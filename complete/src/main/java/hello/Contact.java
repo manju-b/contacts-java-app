@@ -7,6 +7,12 @@ public class Contact {
 	private String emailId;
 	private String phoneNumber;
 	
+	
+	
+	public Contact() {
+
+	}
+
 	public Contact(String firstName, String lastName, String emailId, String phoneNumber) {
 		super();
 		this.firstName = firstName;
