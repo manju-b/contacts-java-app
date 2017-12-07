@@ -65,4 +65,10 @@ public class HelloController {
     	 contactList.put(contact.getPhoneNumber(), contact);
     	 return contactList.get(contact.getPhoneNumber());
     }
+    
+    @RequestMapping(value = "/contacts/{phoneNumber}", method = RequestMethod.PUT)
+    public Contact updatingAContact(@PathVariable("phoneNumber") String ctPhoneNumber, @RequestBody Contact contact) {
+    	contactList.put(ctPhoneNumber, contact);
+    	return contactList.get(ctPhoneNumber);
+    }
 }
