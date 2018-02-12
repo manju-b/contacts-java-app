@@ -54,6 +54,6 @@ public class Contact {
 	}
 	
 	public String toString() {
-		return firstName + " " + lastName + " " + emailId + " " + phoneNumber;
+		return "firstName: " + firstName + "/tlastName: " + lastName + "/tEmail-id: " + emailId + "/tphoneNumber: " + phoneNumber;
 	}
 }

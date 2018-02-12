@@ -30,15 +30,15 @@ public class HelloController {
     
     
     @RequestMapping(value="/contacts" , method= RequestMethod.GET)
-    public Map<String, Contact> getMatchedContactList(@RequestParam(value="firstName", required= false) String firstName) {
+    public Map<String, Contact> getMatchedContactList(@RequestParam(value="anyPartOfName", required= false) String anyPartOfName) {
     	
-    	if(firstName != null) {
+    	if(anyPartOfName != null) {
     		Map<String, Contact> matchedContactList = new HashMap<String, Contact>();
         	for(Map.Entry<String, Contact> mapEntry: ctList.getList().entrySet()) {
-        		String objectValue =mapEntry.getValue().getFirstName();
+        		String objectValue = mapEntry.getValue().getFirstName() + mapEntry.getValue().getLastName();
         		String key = mapEntry.getKey();
         		Contact value = mapEntry.getValue();
-        		if(objectValue.equalsIgnoreCase(firstName)) {
+        		if(objectValue.contains(anyPartOfName)) {
         			matchedContactList.put(key, value);
         		}
         	}
@@ -59,12 +59,13 @@ public class HelloController {
     public Contact creatingAContact(@RequestBody Contact contact) {
     	ctList.addContactToList(contact);
     	return ctList.get(contact.getPhoneNumber());
-    	
     }
     
     @RequestMapping(value = "/contacts/{phoneNumber}", method = RequestMethod.PUT)
     public Contact updatingAContact(@PathVariable("phoneNumber") String ctPhoneNumber, @RequestBody Contact contact) {
     	return ctList.update(ctPhoneNumber, contact);
-    	
     }
+    
+    
+    
 }
